@@ -1,0 +1,4 @@
+[Project]
+Name=neural-threads
+Manager=KDevCMakeManager
+VersionControl=kdevgit
