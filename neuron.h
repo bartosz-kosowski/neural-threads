@@ -20,6 +20,7 @@
 #ifndef NEURON_H
 #define NEURON_H
 
+#include <memory>		// for shared_ptr<T>
 #include <vector>
 #include <cstdlib>		// for size_t
 #include <type_traits>		// for add_pointer for function pointer type
@@ -43,7 +44,7 @@ private:
   
   ActivationFunctionPointer_t activation_function;
   
-  const double summation(vector<double> const& inputs);
+  const double summation(shared_ptr<const vector<double> > const input);
   
   void _set_weights(vector<double>& weights);
   
@@ -53,7 +54,7 @@ public:
   ~Neuron();
   
   void set_activation_function(ActivationFunction function_type);
-  const double response(vector<double> const& inputs);
+  const double response(shared_ptr<const vector<double> > const input);
 };
 
 #endif // NEURON_H

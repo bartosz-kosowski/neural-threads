@@ -70,20 +70,19 @@ void Neuron::set_activation_function(ActivationFunction function_type)
   }
 }
 
-const double Neuron::summation(vector<double> const& inputs) {
+const double Neuron::summation(shared_ptr<const vector<double> > const input) {
   double summed = 0.0d;
   
   for (size_t w = 0; w < inputs_num; w++) {
-    summed += weights.at(w) * inputs.at(w);
+    summed += weights.at(w) * input.get()->at(w);
   }
   
   summed += bias * weights.at(inputs_num);
   return summed;
-  //return std::accumulate(inputs.begin(), inputs.end(), 0.0d);
 }
 
-const double Neuron::response(vector<double> const& inputs) {
-  return activation_function(summation(inputs));
+const double Neuron::response(shared_ptr<const vector<double> > const input) {
+  return activation_function(summation(input));
 }
 
 Neuron::~Neuron()
