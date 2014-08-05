@@ -27,7 +27,7 @@
 using namespace std;
 
 
-using ActivationFunctionPointer_t = add_pointer<const double (const double&)>::type;
+using ActivationFunctionPointer_t = add_pointer<const double (double const&)>::type;
 
 enum class ActivationFunction { SIGMOID };
 
@@ -43,7 +43,7 @@ private:
   
   ActivationFunctionPointer_t activation_function;
   
-  const double summation(const vector<double> &inputs);
+  const double summation(vector<double> const& inputs);
   
   void _set_weights(vector<double>& weights);
   
@@ -53,7 +53,7 @@ public:
   ~Neuron();
   
   void set_activation_function(ActivationFunction function_type);
-  const double response(const vector<double> &inputs);
+  const double response(vector<double> const& inputs);
 };
 
 #endif // NEURON_H

@@ -22,7 +22,7 @@
 #include <numeric>
 #include <random>
 
-const double activation_sigmoid(const double& summed) {
+const double activation_sigmoid(double const& summed) {
   // y=1/(1+e^(-x))
   return 1.0d / (1.0d + exp(-summed));
 }
@@ -37,7 +37,7 @@ Neuron::Neuron(size_t number_of_inputs, ActivationFunction function_type)
   set_activation_function(function_type);
 }
 
-Neuron::Neuron(size_t number_of_inputs, ActivationFunction function_type, std::vector<double>& weights)
+Neuron::Neuron(size_t number_of_inputs, ActivationFunction function_type, vector<double>& weights)
   : inputs_num(number_of_inputs)
 {
   this->weights = weights;
@@ -70,7 +70,7 @@ void Neuron::set_activation_function(ActivationFunction function_type)
   }
 }
 
-const double Neuron::summation(const std::vector<double> &inputs) {
+const double Neuron::summation(vector<double> const& inputs) {
   double summed = 0.0d;
   
   for (size_t w = 0; w < inputs_num; w++) {
@@ -82,7 +82,7 @@ const double Neuron::summation(const std::vector<double> &inputs) {
   //return std::accumulate(inputs.begin(), inputs.end(), 0.0d);
 }
 
-const double Neuron::response(const std::vector<double> &inputs) {
+const double Neuron::response(vector<double> const& inputs) {
   return activation_function(summation(inputs));
 }
 
