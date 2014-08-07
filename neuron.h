@@ -44,7 +44,7 @@ private:
   
   ActivationFunctionPointer_t activation_function;
   
-  const double summation(shared_ptr<const vector<double> > const input);
+  const double summation(shared_ptr<const vector<double> > const input) const;
   
   void _set_weights(vector<double>& weights);
   
@@ -54,7 +54,7 @@ public:
   ~Neuron();
   
   void set_activation_function(ActivationFunction function_type);
-  const double response(shared_ptr<const vector<double> > const input);
+  const double response(shared_ptr<const vector<double> > const input) const;
 };
 
 #endif // NEURON_H

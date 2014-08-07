@@ -70,7 +70,7 @@ void Neuron::set_activation_function(ActivationFunction function_type)
   }
 }
 
-const double Neuron::summation(shared_ptr<const vector<double> > const input) {
+const double Neuron::summation(shared_ptr<const vector<double> > const input) const {
   double summed = 0.0d;
   
   for (size_t w = 0; w < inputs_num; w++) {
@@ -81,7 +81,7 @@ const double Neuron::summation(shared_ptr<const vector<double> > const input) {
   return summed;
 }
 
-const double Neuron::response(shared_ptr<const vector<double> > const input) {
+const double Neuron::response(shared_ptr<const vector<double> > const input) const {
   return activation_function(summation(input));
 }
 

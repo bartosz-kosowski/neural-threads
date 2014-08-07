@@ -31,7 +31,7 @@ Layer::Layer(size_t number_of_neurons, size_t number_of_inputs_per_neuron,
   }
 }
 
-shared_ptr<const vector<double> > Layer::response(shared_ptr<const vector<double> > const input)
+shared_ptr<const vector<double> > Layer::response(shared_ptr<const vector<double> > const input) const
 {
   shared_ptr<vector<double> > output(new vector<double>);
   output->reserve(neurons_num);
@@ -45,7 +45,7 @@ shared_ptr<const vector<double> > Layer::response(shared_ptr<const vector<double
   return output;
 }
 
-vector<shared_ptr<Neuron> > const& Layer::getNeurons()
+vector<shared_ptr<Neuron> > const& Layer::getNeurons() const
 {
   return neurons;
 }

@@ -38,8 +38,8 @@ public:
 	ActivationFunction function_type);
   ~Layer();
   
-  vector<shared_ptr<Neuron> > const& getNeurons();
-  shared_ptr<const vector<double> > response(shared_ptr<const vector<double> > const input);
+  vector<shared_ptr<Neuron> > const& getNeurons() const;
+  shared_ptr<const vector<double> > response(shared_ptr<const vector<double> > const input) const;
 };
 
 #endif // LAYER_H
