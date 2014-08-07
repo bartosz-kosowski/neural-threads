@@ -74,7 +74,7 @@ const double Neuron::summation(shared_ptr<const vector<double> > const input) {
   double summed = 0.0d;
   
   for (size_t w = 0; w < inputs_num; w++) {
-    summed += weights.at(w) * input.get()->at(w);
+    summed += weights.at(w) * input->at(w);
   }
   
   summed += bias * weights.at(inputs_num);
