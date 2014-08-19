@@ -17,40 +17,32 @@
  * 
  */
 
-#include "network.h"
+#include "networkbuilder.h"
 
-Network::Network()
+NetworkBuilder::NetworkBuilder() : network(shared_ptr<Network>(new Network()))
 {
-
 }
 
-
-void Network::addLayer(size_t number_of_neurons, size_t number_of_inputs_per_neuron,
+void NetworkBuilder::addLayerFirst(size_t number_of_neurons, size_t number_of_inputs_per_neuron,
 	ActivationFunction function_type)
 {
-  layers.push_back(
-    shared_ptr<Layer> (new Layer(number_of_neurons, number_of_inputs_per_neuron, function_type))
-  );
+  sizes.push_back(number_of_neurons);
+  network->addLayer(number_of_neurons, number_of_inputs_per_neuron, function_type);
 }
 
-shared_ptr<const vector<double> > Network::response(shared_ptr<const vector<double> > const input) const
+void NetworkBuilder::addLayer(size_t number_of_neurons, ActivationFunction function_type)
 {
-  shared_ptr<const vector<double> > output = input;
-  
-  for (shared_ptr<Layer> layer : layers) {
-    // previous output
-    // (or the method's "input" argument in the case of the first layer)
-    // becomes input for current layer.
-    // Then the layer returns output, which then become input for the next layer
-    // (or is returned from the method in the case of the last layer).
-    output = layer->response(output);
-  }
-  
-  return output;
+  network->addLayer(number_of_neurons, sizes.back(), function_type);
+  sizes.push_back(number_of_neurons);
 }
 
-
-Network::~Network()
+void NetworkBuilder::addLayerLast(size_t number_of_neurons, ActivationFunction function_type)
 {
+  network->addLayer(number_of_neurons, sizes.back(), function_type);
+}
 
+  
+shared_ptr<Network> NetworkBuilder::getNetwork() const 
+{
+  return network;
 }

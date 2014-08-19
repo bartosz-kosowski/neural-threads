@@ -17,29 +17,33 @@
  * 
  */
 
-#ifndef NETWORK_H
-#define NETWORK_H
+#ifndef NETWORKBUILDER_H
+#define NETWORKBUILDER_H
 
 #include <vector>
 #include <memory>
 #include <cstdlib>
 #include "neuron.h"
 #include "layer.h"
+#include "network.h"
 
-using namespace std;
-
-class Network
+class NetworkBuilder
 {
 private:
-  vector<shared_ptr<Layer> > layers;
+  size_t layer_1_inputs;
+  size_t layer_last_outputs;
+  vector<size_t> sizes;
+  shared_ptr<Network> network;
 
 public:
-  Network();
-  ~Network();
+  NetworkBuilder();
   
-  void addLayer(size_t number_of_neurons, size_t number_of_inputs_per_neuron,
+  void addLayerFirst(size_t number_of_neurons, size_t number_of_inputs_per_neuron,
 	ActivationFunction function_type);
-  shared_ptr<const vector<double> > response(shared_ptr<const vector<double> > const input) const;
+  void addLayer(size_t number_of_neurons, ActivationFunction function_type);
+  void addLayerLast(size_t number_of_neurons, ActivationFunction function_type);
+  
+  shared_ptr<Network> getNetwork() const;
 };
 
-#endif // NETWORK_H
+#endif // NETWORKBUILDER_H

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(neural-threads)
 
-add_executable(neural-threads layer.cpp network.cpp neuron.cpp main.cpp)
+add_executable(neural-threads networkbuilder.cpp layer.cpp network.cpp neuron.cpp main.cpp)
 
 install(TARGETS neural-threads RUNTIME DESTINATION bin)
 
