@@ -1,6 +1,6 @@
 /*
- * <one line to give the library's name and an idea of what it does.>
- * Copyright (C) 2014  Genkaku <email>
+ * A simple sequential (non-parallel) neural network.
+ * Copyright (C) 2014  Bartosz Kosowski
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
